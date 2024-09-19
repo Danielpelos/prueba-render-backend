@@ -1,5 +1,5 @@
     import mongoose from "mongoose";
-    import bcrypt from 'bcrypt';
+    import bcryptjs from 'bcryptjs';
 
     const usuarioSchema = mongoose.Schema({
         nombres: {
@@ -85,8 +85,8 @@
         }
 
         try {
-            const salt = await bcrypt.genSalt(10);
-            this.password = await bcrypt.hash(this.password, salt);
+            const salt = await bcryptjs.genSalt(10);
+            this.password = await bcryptjs.hash(this.password, salt);
             next();
         } catch (error) {
             next(error);
@@ -94,7 +94,7 @@
     });
 
     usuarioSchema.methods.comprobarPassword = async function(passwordFormulario){
-        return await bcrypt.compare(passwordFormulario, this.password)
+        return await bcryptjs.compare(passwordFormulario, this.password)
     }
 
     const Usuario = mongoose.model("Usuario", usuarioSchema);
