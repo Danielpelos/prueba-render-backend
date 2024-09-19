@@ -17,7 +17,7 @@ app.use(morgan('dev'));
 app.use(cors());
 
 //Configuración de CORS más estricta (descomentar si es necesario)
- const whitelist = ["http://localhost:5173"];
+ const whitelist = ["https://prueba-render-backend.onrender.com/"];
   const corsOptions = {
       origin: function(origin, callback) { 
           if (whitelist.includes(origin) || !origin) {
